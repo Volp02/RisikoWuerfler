@@ -1,16 +1,18 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
 #include <stdlib.h>
 #include <unistd.h>
 
+
 using namespace std;
 
 int rollDice()
 {
     int result = std::rand() % 6 + 1;
-    cout << "dice roll: " << result << endl;
+    cout << "[" << result << "] ";
     return result;
 }
 
@@ -51,9 +53,13 @@ int main()
             dice[1] = 0;
             dice[2] = 0;
 
+            cout << "Attack Dice: " << endl;
+
             dice[0] = rollDice();
             dice[1] = rollDice();
             dice[2] = rollDice();
+            cout << endl;
+
 
             int n = sizeof(dice) / sizeof(dice[0]); // Calculate the size of the array
 
@@ -72,8 +78,12 @@ int main()
                     dice[1] = 0;
                     dice[2] = 0;
 
+                    cout << "Defense Dice: " << endl;
+
                     dice[1] = rollDice();
                     dice[2] = rollDice();
+
+                    cout << endl;
 
                     n = sizeof(dice) / sizeof(dice[0]);
                     sort(dice, dice + n);
@@ -84,30 +94,32 @@ int main()
                     if (maxDef1 >= maxAtt1)
                     {
                         troup_att--;
-                        cout << "defense wins 2 dice: " << maxDef1 << " vs  attack: " << maxAtt1 << endl;
+                        cout << "defense wins 1st dice: " << maxDef1 << " vs  " << maxAtt1 << endl;
                     }
                     else if (maxDef1 < maxAtt1)
                     {
                         troup_def--;
-                        cout << "attack wins 2 dice: " << maxAtt1 << " vs  attack: " << maxDef1 << endl;
+                        cout << "attack wins 1st dice: " << maxAtt1 << " vs " << maxDef1 << endl;
                     }
 
                     if (maxDef2 >= maxAtt2)
                     {
                         troup_att--;
-                        cout << "defense wins 2 dice 2nd dice: " << maxDef2 << " vs  attack: " << maxAtt2 << endl;
+                        cout << "defense wins 2nd dice: " << maxDef2 << " vs " << maxAtt2 << endl;
                     }
                     else if (maxDef2 < maxAtt2)
                     {
                         troup_def--;
-                        cout << "attack wins 2 dice 2nd dice: " << maxAtt2 << " vs  attack: " << maxDef2 << endl;
+                        cout << "attack wins 2nd dice: " << maxAtt2 << " vs " << maxDef2 << endl;
                     }
                 }
             }
             else
             {
-
+                cout << "Defense Dice: " << endl;
+                
                 maxDef1 = rollDice();
+                cout << endl;
 
                 if (maxDef1 >= maxAtt1)
                 {
@@ -124,25 +136,31 @@ int main()
             cout << endl;
 
             cout << "att troups:" << troup_att << "\ndef troups:" << troup_def << endl;
+            cout << "\n#########################################\n";
             cout << endl;
             // sleep(0.25);
         }
+
+
         cout << "\033[2J\033[1;1H";
-        cout << "##########################################\n"
-             << endl;
+        cout << "##########################################\n#                                        #\n";
 
-        cout << "Attacking remaining: " << troup_att << endl;
-        cout << "Defending remaining: " << troup_def << "\n\n\n"
-             << endl;
+        // Ausgabe mit setw() für gleichmäßige Ausrichtung
+        cout << "# Attacking remaining:" << setw(4) << troup_att << setw(16)<<  "#" << endl;
+        cout << "# Defending remaining:" << setw(4) << troup_def << setw(16)<< "#";
+        cout << "\n#                                        #";
+        cout << "\n#                                        #";
+        cout << "\n#                                        #";
 
-        cout << "Attacing units lost: " << troupAttOld - troup_att << endl;
-        cout << "Defending units lost: " << troupDefOld - troup_def << endl;
-        cout << endl;
+        cout << "\n# Attacing units lost:" << setw(4) << troupAttOld - troup_att << setw(16) << "#" << endl;
+        cout << "# Defending units lost:" << setw(3) << troupDefOld - troup_def << setw(16) << "#";
+        cout <<"\n#                                        #\n";
 
         LostTotalAtt = LostTotalAtt + troupAttOld - troup_att;
         LostTotalDef = LostTotalDef + troupDefOld - troup_def;
+        cout << "# -------------------------------------- #" << endl;
 
-        cout << "Total troups lost: Att: " << LostTotalAtt << " Def: " << LostTotalDef << endl;
+        cout << "#  Total lost: Att: " << LostTotalAtt << " Def: " << LostTotalDef << setw(12) <<"#" << endl;
 
         cout << "#########################################\n\n\n"
              << endl;
