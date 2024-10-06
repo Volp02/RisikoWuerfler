@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
 using namespace std;
 
 int rollDice()
@@ -28,13 +27,10 @@ int main()
     while (true)
     {
 
-        
-
         int dice[3];
 
         int maxAtt1, maxAtt2, maxDef1, maxDef2;
 
-        
         cout << "Troups attacing: " << troup_att << endl;
         cin.clear();
         cout << "troup defense amount:";
@@ -129,10 +125,9 @@ int main()
 
             cout << "att troups:" << troup_att << "\ndef troups:" << troup_def << endl;
             cout << endl;
-            //sleep(0.25);
-            cout << "\033[2J\033[1;1H";
+            // sleep(0.25);
         }
-
+        cout << "\033[2J\033[1;1H";
         cout << "##########################################\n"
              << endl;
 
@@ -147,9 +142,8 @@ int main()
         LostTotalAtt = LostTotalAtt + troupAttOld - troup_att;
         LostTotalDef = LostTotalDef + troupDefOld - troup_def;
 
-
         cout << "Total troups lost: Att: " << LostTotalAtt << " Def: " << LostTotalDef << endl;
-        
+
         cout << "#########################################\n\n\n"
              << endl;
 
@@ -157,7 +151,6 @@ int main()
         cin.clear();
         cout << "troup attack amount: ";
         cin >> troup_att;
-        
     }
 
     return 0;
