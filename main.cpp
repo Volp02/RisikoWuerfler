@@ -158,9 +158,9 @@ int main()
 
         LostTotalAtt = LostTotalAtt + troupAttOld - troup_att;
         LostTotalDef = LostTotalDef + troupDefOld - troup_def;
-        cout << "# -------------------------------------- #" << endl;
+        cout << "# -----------------------------          #" << endl;
 
-        cout << "#  Total lost: Att: " << LostTotalAtt << " Def: " << LostTotalDef << setw(12) <<"#" << endl;
+        cout << "# Total lost: Att: " << LostTotalAtt << " Def: " << LostTotalDef << setw(12) <<"#" << endl;
 
         cout << "#########################################\n\n\n"
              << endl;
